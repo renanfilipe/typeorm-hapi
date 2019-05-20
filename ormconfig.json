@@ -7,7 +7,7 @@
   "database": "test",
   "synchronize": true,
   "logging": false,
-  "entities": ["build/src/entity/**/*.ts"],
+  "entities": ["./src/entities/*.ts"],
   "cli": {
     "entitiesDir": "src/entities"
   }

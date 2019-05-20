@@ -20,3 +20,44 @@ export const registerSchema: Joi.ObjectSchema = Joi.object()
     lastName: Joi.string()
       .max(enumRegister.lastNameMaxLength),
 });
+
+export const updateSchema: Joi.ObjectSchema = Joi.object()
+  .keys({
+    age: Joi.number()
+      .min(0)
+      .required(),
+    document: Joi.string()
+      .max(enumRegister.documentMaxLength)
+      .required(),
+    firstName: Joi.string()
+      .max(enumRegister.firstNameMaxLength)
+      .required(),
+    id: Joi.string()
+      .uuid()
+      .required(),
+    lastName: Joi.string()
+      .max(enumRegister.lastNameMaxLength),
+});
+
+export const idSchema: Joi.ObjectSchema = Joi.object()
+  .keys({
+    id: Joi.string()
+      .uuid()
+      .required(),
+});
+
+export const getManySchema: Joi.ObjectSchema = Joi.object()
+  .keys({
+    _end: Joi.string()
+      .trim(),
+    _order: Joi.string()
+      .trim()
+      .valid(["ASC"], ["DESC"])
+      .required(),
+    _sort: Joi.string()
+      .trim()
+      .required(),
+    _start: Joi.string()
+      .trim()
+      .required(),
+});

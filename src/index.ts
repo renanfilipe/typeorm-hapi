@@ -14,12 +14,13 @@ const preResponse: preResponse = (
   h: ResponseToolkit,
 ): symbol => {
   const response: ResponseObject | Boom = request.response;
+
   if (!(response as Boom).isBoom) {
     return h.continue;
   }
 
-  console.error(response.message);
-  throw Boom.badImplementation();
+  console.info(response.message);
+  throw response;
 };
 
 const start: start = async (): Promise<void> => {
