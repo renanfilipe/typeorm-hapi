@@ -1,41 +1,47 @@
 import { Server } from "@hapi/hapi";
 
-import { getMany, getOne, register, update } from "./userController";
 import {
-  getManySchema,
+  deleteUser,
+  getManyUsers,
+  getOneUser,
+  registerUser,
+  updateUser,
+} from "./userController";
+import {
+  getManyUsersSchema,
   idSchema,
-  registerSchema,
-  updateSchema,
+  registerUserSchema,
+  updateUserSchema,
 } from "./userValidator";
 
 type init = (server: Server) => void;
 
 export const init: init = (server: Server): void => {
   server.route({
-    handler: register,
+    handler: registerUser,
     method: "POST",
     options: {
       validate: {
-        payload: registerSchema,
+        payload: registerUserSchema,
       },
     },
     path: "/user",
   });
 
   server.route({
-    handler: update,
+    handler: updateUser,
     method: "PUT",
     options: {
       validate: {
         params: idSchema,
-        payload: updateSchema,
+        payload: updateUserSchema,
       },
     },
     path: "/user/{id}",
   });
 
   server.route({
-    handler: getOne,
+    handler: getOneUser,
     method: "GET",
     options: {
       validate: {
@@ -46,13 +52,24 @@ export const init: init = (server: Server): void => {
   });
 
   server.route({
-    handler: getMany,
+    handler: getManyUsers,
     method: "GET",
     options: {
       validate: {
-        query: getManySchema,
+        query: getManyUsersSchema,
       },
     },
     path: "/user",
+  });
+
+  server.route({
+    handler: deleteUser,
+    method: "DELETE",
+    options: {
+      validate: {
+        params: idSchema,
+      },
+    },
+    path: "/user/{id}",
   });
 };

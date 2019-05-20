@@ -3,34 +3,34 @@ import { ResponseObject, ResponseToolkit } from "@hapi/hapi";
 
 import { User } from "../../entities";
 import {
-  IGetManyRequest,
-  IGetOneRequest,
-  IRegisterRequest,
-  IUpdateRequest,
+  IGetManyUsersRequest,
+  IIdParamRequest,
+  IRegisterUserRequest,
+  IUpdateUserRequest,
 } from "../../interfaces/request";
 
-type register = (
-  request: IRegisterRequest,
+type registerUser = (
+  request: IRegisterUserRequest,
   h: ResponseToolkit,
 ) => Promise<ResponseObject>;
 
-type update = (
-  request: IUpdateRequest,
+type updateUser = (
+  request: IUpdateUserRequest,
   h: ResponseToolkit,
 ) => Promise<ResponseObject>;
 
-type getOne = (
-  request: IGetOneRequest,
+type idParam = (
+  request: IIdParamRequest,
   h: ResponseToolkit,
 ) => Promise<ResponseObject>;
 
-type getMany = (
-  request: IGetManyRequest,
+type getManyUsers = (
+  request: IGetManyUsersRequest,
   h: ResponseToolkit,
 ) => Promise<ResponseObject>;
 
-export const register: register = async (
-  request: IRegisterRequest,
+export const registerUser: registerUser = async (
+  request: IRegisterUserRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { firstName, lastName, age, document } = request.payload;
@@ -48,8 +48,8 @@ export const register: register = async (
   return h.response(newUser);
 };
 
-export const update: update = async (
-  request: IUpdateRequest,
+export const updateUser: updateUser = async (
+  request: IUpdateUserRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { id, firstName, lastName, age, document } = request.payload;
@@ -66,8 +66,8 @@ export const update: update = async (
   return h.response(user);
 };
 
-export const getOne: getOne = async (
-  request: IGetOneRequest,
+export const getOneUser: idParam = async (
+  request: IIdParamRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { id } = request.params;
@@ -79,8 +79,8 @@ export const getOne: getOne = async (
   return h.response(user);
 };
 
-export const getMany: getMany = async (
-  request: IGetManyRequest,
+export const getManyUsers: getManyUsers = async (
+  request: IGetManyUsersRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { _start, _end, _order, _sort } = request.query;
@@ -98,4 +98,18 @@ export const getMany: getMany = async (
     .response(users)
     .header("X-Total-Count", usersCount.toString())
     .header("Access-Control-Expose-Headers", "X-Total-Count");
+};
+
+export const deleteUser: idParam = async (
+  request: IIdParamRequest,
+  h: ResponseToolkit,
+): Promise<ResponseObject> => {
+  const { id } = request.params;
+  const user: User | undefined = await User.findOne({ id });
+  if (!(user instanceof User)) {
+    throw Boom.notFound("User not found.");
+  }
+  await user.remove();
+
+  return h.response(user);
 };

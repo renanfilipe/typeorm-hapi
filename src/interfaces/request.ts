@@ -1,6 +1,6 @@
 import { Request } from "@hapi/hapi";
 
-export interface IRegisterRequest extends Request {
+export interface IRegisterUserRequest extends Request {
   payload: {
     age: number;
     document: string;
@@ -9,7 +9,7 @@ export interface IRegisterRequest extends Request {
   };
 }
 
-export interface IUpdateRequest extends Request {
+export interface IUpdateUserRequest extends Request {
   params: {
     id: string;
   };
@@ -22,13 +22,13 @@ export interface IUpdateRequest extends Request {
   };
 }
 
-export interface IGetOneRequest extends Request {
+export interface IIdParamRequest extends Request {
   params: {
     id: string;
   };
 }
 
-export interface IGetManyRequest extends Request {
+export interface IGetManyUsersRequest extends Request {
   query: {
     _end: string;
     _order: string;

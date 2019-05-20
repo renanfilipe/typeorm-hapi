@@ -6,7 +6,7 @@ enum enumRegister {
   lastNameMaxLength = 100,
 }
 
-export const registerSchema: Joi.ObjectSchema = Joi.object()
+export const registerUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     age: Joi.number()
       .min(0)
@@ -21,7 +21,7 @@ export const registerSchema: Joi.ObjectSchema = Joi.object()
       .max(enumRegister.lastNameMaxLength),
 });
 
-export const updateSchema: Joi.ObjectSchema = Joi.object()
+export const updateUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     age: Joi.number()
       .min(0)
@@ -46,7 +46,7 @@ export const idSchema: Joi.ObjectSchema = Joi.object()
       .required(),
 });
 
-export const getManySchema: Joi.ObjectSchema = Joi.object()
+export const getManyUsersSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     _end: Joi.string()
       .trim(),
