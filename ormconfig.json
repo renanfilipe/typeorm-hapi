@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "renan",
+  "password": "123123",
+  "database": "test",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["build/src/entity/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/entities"
+  }
+}

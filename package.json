@@ -1,0 +1,37 @@
+{
+  "name": "typeorm-hapi",
+  "version": "0.0.1",
+  "description": "Awesome project developed with TypeORM.",
+  "devDependencies": {
+    "@types/node": "^12.0.2",
+    "gts": "^1.0.0",
+    "typescript": "~3.4.0"
+  },
+  "dependencies": {
+    "@hapi/boom": "^7.4.2",
+    "@hapi/hapi": "^18.3.1",
+    "@hapi/joi": "^15.0.3",
+    "@hapi/vision": "^5.5.2",
+    "@types/dotenv": "^6.1.1",
+    "@types/hapi": "^18.0.2",
+    "@types/hapi__hapi": "^18.2.1",
+    "@types/hapi__vision": "^5.5.0",
+    "@types/node": "^12.0.2",
+    "dotenv": "^8.0.0",
+    "nodemon": "^1.19.0",
+    "pg": "^7.11.0",
+    "reflect-metadata": "^0.1.10",
+    "ts-node": "^8.1.0",
+    "typeorm": "0.2.17"
+  },
+  "scripts": {
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "posttest": "yarn run check",
+    "prepare": "yarn run compile",
+    "pretest": "yarn run compile",
+    "start": "nodemon -e ts -w ./src -x ts-node src/index.ts"
+  }
+}
