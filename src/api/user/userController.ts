@@ -2,12 +2,9 @@ import * as Boom from "@hapi/boom";
 import { ResponseObject, ResponseToolkit } from "@hapi/hapi";
 
 import { User } from "../../entities";
-import {
-  IGetManyUsersRequest,
-  IIdParamRequest,
-  IRegisterUserRequest,
-  IUpdateUserRequest,
-} from "../../interfaces/request";
+import { IGetManyRequest, IIdParamRequest } from "../../utils/interfaces";
+
+import { IRegisterUserRequest, IUpdateUserRequest } from "./userInterface";
 
 export const registerUser = async (
   request: IRegisterUserRequest,
@@ -60,7 +57,7 @@ export const getOneUser = async (
 };
 
 export const getManyUsers = async (
-  request: IGetManyUsersRequest,
+  request: IGetManyRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { _start, _end, _order, _sort } = request.query;
