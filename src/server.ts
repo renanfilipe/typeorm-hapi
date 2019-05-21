@@ -3,10 +3,8 @@ import * as Vision from "@hapi/vision";
 
 import * as User from "./api/user";
 
-type init = () => Promise<Server>;
-
-export const init: init = async (): Promise<Server> => {
-  const server: Server = new Server({
+export const init = async (): Promise<Server> => {
+  const server = new Server({
     host: "localhost",
     port: 3000,
     routes: {

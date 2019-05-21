@@ -14,9 +14,7 @@ import {
   updateUserSchema,
 } from "./userValidator";
 
-type init = (server: Server) => void;
-
-export const init: init = (server: Server): void => {
+export const init = (server: Server): void => {
   server.route({
     handler: registerUser,
     method: "POST",

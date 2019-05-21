@@ -6,6 +6,7 @@
   "rules": {
     "no-console": false,
     "completed-docs": false,
-    "file-name-casing": [true, "camel-case", "pascal-case"]
+    "file-name-casing": [true, "camel-case", "pascal-case"],
+    "typedef": [false, "variable-declaration"]
   }
 }

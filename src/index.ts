@@ -6,10 +6,7 @@ import { createConnection } from "typeorm";
 
 import { init } from "./server";
 
-type start = () => Promise<void>;
-type preResponse = (request: Request, h: ResponseToolkit) => symbol;
-
-const preResponse: preResponse = (
+const preResponse = (
   request: Request,
   h: ResponseToolkit,
 ): symbol => {
@@ -23,7 +20,7 @@ const preResponse: preResponse = (
   throw response;
 };
 
-const start: start = async (): Promise<void> => {
+const start = async (): Promise<void> => {
   await createConnection();
   console.log("Connected to database!");
   const server: Server = await init();
