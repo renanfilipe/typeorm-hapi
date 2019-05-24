@@ -1,12 +1,12 @@
 import { Request } from "@hapi/hapi";
 
-export interface IIdParamRequest extends Request {
+export interface IdParamRequest extends Request {
   params: {
     id: string;
   };
 }
 
-export interface IGetManyRequest extends Request {
+export interface GetManyRequest extends Request {
   query: {
     _end: string;
     _order: string;

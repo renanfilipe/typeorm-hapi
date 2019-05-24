@@ -4,9 +4,15 @@
     "exclude": ["**/*.json"]
   },
   "rules": {
+    "strict-type-predicates": true,
     "no-console": false,
     "completed-docs": false,
     "file-name-casing": [true, "camel-case", "pascal-case"],
-    "typedef": [false, "variable-declaration"]
+    "typedef": [false, "variable-declaration"],
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "ordered-imports": [true, {
+      "grouped-imports": false
+    }],
+    "interface-name": [true, "never-prefix"]
   }
 }

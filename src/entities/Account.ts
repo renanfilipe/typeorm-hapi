@@ -8,7 +8,7 @@ export class Account extends BaseModel {
   @Column({ name: "number", type: "integer", nullable: false })
   public number: number;
 
-  @OneToOne(() => User, { nullable: false })
+  @OneToOne(() => User)
   @JoinColumn({ name: "user_id" })
   public user: User;
 }

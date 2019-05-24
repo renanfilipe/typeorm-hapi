@@ -18,7 +18,8 @@
     "rootDir": ".",
     "sourceMap": true,
     "target": "es2017",
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "strict": true,
   },
   "include": [
     "src/**/*.ts",

@@ -1,5 +1,5 @@
 import { Server } from "@hapi/hapi";
-
+import { getManyUsersSchema, idSchema } from "../../common/validate";
 import {
   deleteUser,
   getManyUsers,
@@ -7,12 +7,7 @@ import {
   registerUser,
   updateUser,
 } from "./userController";
-import {
-  getManyUsersSchema,
-  idSchema,
-  registerUserSchema,
-  updateUserSchema,
-} from "./userValidator";
+import { registerUserSchema, updateUserSchema } from "./userValidator";
 
 export const init = (server: Server): void => {
   server.route({

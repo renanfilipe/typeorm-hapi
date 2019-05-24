@@ -1,13 +1,15 @@
 import * as Boom from "@hapi/boom";
 import { ResponseObject, ResponseToolkit } from "@hapi/hapi";
+import { GetManyRequest, IdParamRequest } from "../../common/interface";
+import { Account, Pet, User } from "../../entities";
+import { RegisterUserRequest, UpdateUserRequest } from "./userInterface";
 
-import { User } from "../../entities";
-import { IGetManyRequest, IIdParamRequest } from "../../utils/interfaces";
-
-import { IRegisterUserRequest, IUpdateUserRequest } from "./userInterface";
+enum enumAccount {
+  value = 123,
+}
 
 export const registerUser = async (
-  request: IRegisterUserRequest,
+  request: RegisterUserRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { firstName, lastName, age, document } = request.payload;
@@ -22,11 +24,26 @@ export const registerUser = async (
   newUser.age = age;
   await newUser.save();
 
-  return h.response(newUser);
+  const account = new Account();
+  account.number = enumAccount.value;
+  account.user = newUser;
+  await account.save();
+
+  const petA = new Pet();
+  petA.name = "escola";
+  petA.user = newUser;
+  await petA.save();
+
+  const petB = new Pet();
+  petB.name = "da vida";
+  petB.user = newUser;
+  await petB.save();
+
+  return h.response(account);
 };
 
 export const updateUser = async (
-  request: IUpdateUserRequest,
+  request: UpdateUserRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { id, firstName, lastName, age, document } = request.payload;
@@ -44,7 +61,7 @@ export const updateUser = async (
 };
 
 export const getOneUser = async (
-  request: IIdParamRequest,
+  request: IdParamRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { id } = request.params;
@@ -57,7 +74,7 @@ export const getOneUser = async (
 };
 
 export const getManyUsers = async (
-  request: IGetManyRequest,
+  request: GetManyRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { _start, _end, _order, _sort } = request.query;
@@ -78,7 +95,7 @@ export const getManyUsers = async (
 };
 
 export const deleteUser = async (
-  request: IIdParamRequest,
+  request: IdParamRequest,
   h: ResponseToolkit,
 ): Promise<ResponseObject> => {
   const { id } = request.params;
