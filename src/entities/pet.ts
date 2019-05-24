@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 
-import { BaseModel } from "./BaseModel";
-import { User } from "./User";
+import { BaseModel } from "./baseModel";
+import { User } from "./user";
 
 @Entity("pet")
 export class Pet extends BaseModel {

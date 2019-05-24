@@ -1,12 +1,18 @@
 import * as Boom from "@hapi/boom";
 import { Request, ResponseObject, ResponseToolkit, Server } from "@hapi/hapi";
 import * as Dotenv from "dotenv";
-import * as ReflectMetada from "reflect-metadata";
+// tslint:disable-next-line: no-import-side-effect
+import "reflect-metadata";
 import { createConnection } from "typeorm";
 
 import { init } from "./server";
 
-const preResponse = (
+Dotenv.config();
+
+type preResponse = (request: Request, h: ResponseToolkit) => symbol;
+type start = () => Promise<void>;
+
+const preResponse: preResponse = (
   request: Request,
   h: ResponseToolkit,
 ): symbol => {
@@ -20,7 +26,7 @@ const preResponse = (
   throw response;
 };
 
-const start = async (): Promise<void> => {
+const start: start = async (): Promise<void> => {
   await createConnection();
   console.log("Connected to database!");
   const server: Server = await init();

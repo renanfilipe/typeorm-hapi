@@ -1,13 +1,13 @@
 import * as Joi from "@hapi/joi";
 
-export const idSchema = Joi.object()
+export const idSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     id: Joi.string()
       .uuid()
       .required(),
 });
 
-export const getManyUsersSchema = Joi.object()
+export const getManySchema: Joi.ObjectSchema = Joi.object()
   .keys({
     _end: Joi.string()
       .trim(),

@@ -1,40 +1,40 @@
 import * as Joi from "@hapi/joi";
 
-enum enumRegister {
+enum Register {
   documentMaxLength = 100,
   firstNameMaxLength = 100,
   lastNameMaxLength = 100,
 }
 
-export const registerUserSchema = Joi.object()
+export const registerUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     age: Joi.number()
       .min(0)
       .required(),
     document: Joi.string()
-      .max(enumRegister.documentMaxLength)
+      .max(Register.documentMaxLength)
       .required(),
     firstName: Joi.string()
-      .max(enumRegister.firstNameMaxLength)
+      .max(Register.firstNameMaxLength)
       .required(),
     lastName: Joi.string()
-      .max(enumRegister.lastNameMaxLength),
+      .max(Register.lastNameMaxLength),
 });
 
-export const updateUserSchema = Joi.object()
+export const updateUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     age: Joi.number()
       .min(0)
       .required(),
     document: Joi.string()
-      .max(enumRegister.documentMaxLength)
+      .max(Register.documentMaxLength)
       .required(),
     firstName: Joi.string()
-      .max(enumRegister.firstNameMaxLength)
+      .max(Register.firstNameMaxLength)
       .required(),
     id: Joi.string()
       .uuid()
       .required(),
     lastName: Joi.string()
-      .max(enumRegister.lastNameMaxLength),
+      .max(Register.lastNameMaxLength),
 });

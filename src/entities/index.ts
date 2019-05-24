@@ -1,3 +1,3 @@
-export { Account } from "./Account";
-export { Pet } from "./Pet";
-export { User } from "./User";
+export { Account } from "./account";
+export { Pet } from "./pet";
+export { User } from "./user";
