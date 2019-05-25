@@ -49,15 +49,12 @@ export const updateUser: updateUser = async (
     throw Boom.notFound("User not found.");
   }
 
-  const account: Account | undefined = await Account.findOne({
+  const account: Account | undefined = await Account.findOneOrFail({
     relations: ["user"],
     where: {
       user,
     },
   });
-  if (account === undefined) {
-    throw Boom.notFound("Account not found.");
-  }
 
   user.firstName = firstName;
   user.lastName = lastName;

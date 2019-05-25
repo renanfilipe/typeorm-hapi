@@ -1,5 +1,4 @@
 import { Request, ResponseToolkit, Server } from "@hapi/hapi";
-import * as Vision from "@hapi/vision";
 
 import * as User from "./api/user";
 
@@ -28,8 +27,6 @@ export const init: init = async (): Promise<Server> => {
   });
 
   User.init(server);
-
-  await server.register(Vision);
 
   return server;
 };

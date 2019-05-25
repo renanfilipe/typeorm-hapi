@@ -34,7 +34,7 @@ export const getOne: getOne = (entityName: EntityName): getOneArrowFunc => async
   const entity: typeOfDatabase = Database[entityName];
   const item: database | undefined = await entity.findOne({ id });
   if (item === undefined) {
-    throw notFound("User not found.");
+    return h.response({});
   }
 
   return h.response(item);
@@ -70,7 +70,7 @@ export const remove: remove = (entityName: EntityName): removeArrowFunc => async
   const entity: typeOfDatabase = Database[entityName];
   const item: database | undefined = await entity.findOne({ id });
   if (!(item instanceof entity)) {
-    throw notFound("User not found.");
+    throw notFound(`${entityName} not found.`);
   }
   await item.remove();
 
