@@ -5,8 +5,8 @@ import { User } from "./user";
 
 @Entity("account")
 export class Account extends BaseModel {
-  @Column({ name: "number", type: "integer", nullable: false })
-  public number: number;
+  @Column({ name: "number", type: "varchar", length: 20, nullable: false })
+  public number: string;
 
   @OneToOne(() => User)
   @JoinColumn({ name: "user_id" })

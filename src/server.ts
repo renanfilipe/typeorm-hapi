@@ -1,4 +1,4 @@
-import { Server } from "@hapi/hapi";
+import { Request, ResponseToolkit, Server } from "@hapi/hapi";
 import * as Vision from "@hapi/vision";
 
 import * as User from "./api/user";
@@ -12,6 +12,17 @@ export const init: init = async (): Promise<Server> => {
     routes: {
       cors: {
         origin: ["*"],
+      },
+      validate: {
+        failAction: async (
+          request: Request,
+          h: ResponseToolkit,
+          err: Error | undefined,
+        ): Promise<void> => {
+          if (err instanceof Error) {
+            throw err;
+          }
+        },
       },
     },
   });

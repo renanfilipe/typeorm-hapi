@@ -4,7 +4,6 @@
     "exclude": ["**/*.json"]
   },
   "rules": {
-    "strict-type-predicates": true,
     "no-console": false,
     "completed-docs": false,
     "arrow-parens": [true, "ban-single-arg-parens"],

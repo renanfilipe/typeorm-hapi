@@ -8,7 +8,7 @@ export class Pet extends BaseModel {
   @Column({ name: "name", type: "varchar", nullable: true })
   public name: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user: User) => user.pets)
   @JoinColumn({ name: "user_id" })
   public user: User;
 }

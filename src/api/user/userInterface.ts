@@ -2,10 +2,11 @@ import { Request } from "@hapi/hapi";
 
 export interface RegisterUserRequest extends Request {
   payload: {
+    accountNumber: string;
     age: number;
     document: string;
     firstName: string;
-    lastName: string;
+    lastName?: string;
   };
 }
 
@@ -14,6 +15,7 @@ export interface UpdateUserRequest extends Request {
     id: string;
   };
   payload: {
+    accountNumber: string;
     age: number;
     document: string;
     firstName: string;

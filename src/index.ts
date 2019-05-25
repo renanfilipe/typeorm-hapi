@@ -22,7 +22,7 @@ const preResponse: preResponse = (
     return h.continue;
   }
 
-  console.info(response.message);
+  console.info(response);
   throw response;
 };
 

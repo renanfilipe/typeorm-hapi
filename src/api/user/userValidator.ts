@@ -8,6 +8,9 @@ enum Register {
 
 export const registerUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
+    accountNumber: Joi.string()
+      .regex(/^[0-9]*$/)
+      .required(),
     age: Joi.number()
       .min(0)
       .required(),
@@ -23,6 +26,9 @@ export const registerUserSchema: Joi.ObjectSchema = Joi.object()
 
 export const updateUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
+    accountNumber: Joi.string()
+      .regex(/^[0-9]*$/)
+      .required(),
     age: Joi.number()
       .min(0)
       .required(),
