@@ -44,3 +44,10 @@ export const updateUserSchema: Joi.ObjectSchema = Joi.object()
     lastName: Joi.string()
       .max(Register.lastNameMaxLength),
 });
+
+export const loginSchema: Joi.ObjectSchema = Joi.object()
+  .keys({
+    document: Joi.string()
+      .max(Register.documentMaxLength)
+      .required(),
+});

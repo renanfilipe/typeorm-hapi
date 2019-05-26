@@ -23,3 +23,9 @@ export interface UpdateUserRequest extends Request {
     lastName: string;
   };
 }
+
+export interface LoginRequest extends Request {
+  payload: {
+    document: string;
+  };
+}

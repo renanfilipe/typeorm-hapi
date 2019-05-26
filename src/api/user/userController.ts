@@ -1,12 +1,27 @@
 import * as Boom from "@hapi/boom";
 import { ResponseObject, ResponseToolkit } from "@hapi/hapi";
+import * as Jwt from "jsonwebtoken";
 
 import { Account, User } from "../../entities";
 
-import { RegisterUserRequest, UpdateUserRequest } from "./userInterface";
+import {
+  LoginRequest,
+  RegisterUserRequest,
+  UpdateUserRequest,
+} from "./userInterface";
 
-type registerUser = (request: RegisterUserRequest, h: ResponseToolkit) => Promise<ResponseObject>;
-type updateUser = (request: UpdateUserRequest, h: ResponseToolkit) => Promise<ResponseObject>;
+type registerUser = (
+  request: RegisterUserRequest,
+  h: ResponseToolkit,
+) => Promise<ResponseObject>;
+type updateUser = (
+  request: UpdateUserRequest,
+  h: ResponseToolkit,
+) => Promise<ResponseObject>;
+type login = (
+  request: LoginRequest,
+  h: ResponseToolkit,
+) => Promise<ResponseObject>;
 
 export const registerUser: registerUser = async (
   request: RegisterUserRequest,
@@ -66,4 +81,19 @@ export const updateUser: updateUser = async (
   await account.save();
 
   return h.response(account);
+};
+
+export const login: login = async (
+  request: LoginRequest,
+  h: ResponseToolkit,
+): Promise<ResponseObject> => {
+  const { document } = request.payload;
+  const user: User | undefined = await User.findOne({ document });
+  if (user === undefined) {
+    throw Boom.notFound("User not found.");
+  }
+  const jwtSecret: string = process.env.JWT_SECRET as string;
+  const jwt: string = Jwt.sign({ id: user.id }, jwtSecret, { expiresIn: "7d" });
+
+  return h.response({ authorization: jwt });
 };

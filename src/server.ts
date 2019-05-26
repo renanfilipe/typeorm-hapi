@@ -1,6 +1,7 @@
 import { Request, ResponseToolkit, Server } from "@hapi/hapi";
 
 import * as User from "./api/user";
+import { installPlugins } from "./plugins";
 
 type init = () => Promise<Server>;
 
@@ -25,6 +26,8 @@ export const init: init = async (): Promise<Server> => {
       },
     },
   });
+
+  await installPlugins(server);
 
   User.init(server);
 
