@@ -5,6 +5,9 @@ import { installPlugins } from "./plugins";
 
 type init = () => Promise<Server>;
 
+/**
+ * Initializes hapi server and loads its plugins.
+ */
 export const init: init = async (): Promise<Server> => {
   const server: Server = new Server({
     host: "localhost",

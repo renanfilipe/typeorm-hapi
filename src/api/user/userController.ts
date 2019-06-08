@@ -92,7 +92,7 @@ export const login: login = async (
   if (user === undefined) {
     throw Boom.notFound("User not found.");
   }
-  const jwtSecret: string = process.env.JWT_SECRET as string;
+  const jwtSecret: string = request.server.app.JWT_SECRET;
   const jwt: string = Jwt.sign({ id: user.id }, jwtSecret, { expiresIn: "7d" });
 
   return h.response({ authorization: jwt });

@@ -1,6 +1,6 @@
-import { Request } from "@hapi/hapi";
+import { BaseRequest } from "../../common/interface";
 
-export interface RegisterUserRequest extends Request {
+export interface RegisterUserRequest extends BaseRequest {
   payload: {
     accountNumber: string;
     age: number;
@@ -10,7 +10,7 @@ export interface RegisterUserRequest extends Request {
   };
 }
 
-export interface UpdateUserRequest extends Request {
+export interface UpdateUserRequest extends BaseRequest {
   params: {
     id: string;
   };
@@ -24,7 +24,7 @@ export interface UpdateUserRequest extends Request {
   };
 }
 
-export interface LoginRequest extends Request {
+export interface LoginRequest extends BaseRequest {
   payload: {
     document: string;
   };

@@ -1,6 +1,6 @@
-type noTryCatch = <T>(promise: Promise<T>) => Promise<[T, Error | undefined]>;
+type noTryCatch = <T>(promise: Promise<T>) => Promise<[Error | undefined, T]>;
 
-export const noTryCatch: noTryCatch = <T>(promise: Promise<T>): Promise<[T, Error | undefined]> => promise
-  .then<[T, undefined]>((data: T) => [data, undefined])
+export const noTryCatch: noTryCatch = <T>(promise: Promise<T>): Promise<[Error | undefined, T]> => promise
+  .then<[undefined, T]>((data: T) => [undefined, data])
   // tslint:disable-next-line: no-any
-  .catch<[any, Error]>((error: Error) => [undefined, error]);
+  .catch<[Error, any]>((error: Error) => [error, undefined]);
