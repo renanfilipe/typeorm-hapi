@@ -6,6 +6,9 @@ enum Register {
   lastNameMaxLength = 100,
 }
 
+/**
+ * Joi used to validate the register user route.
+ */
 export const registerUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     accountNumber: Joi.string()
@@ -24,6 +27,9 @@ export const registerUserSchema: Joi.ObjectSchema = Joi.object()
       .max(Register.lastNameMaxLength),
 });
 
+/**
+ * Joi used to validate the update user route.
+ */
 export const updateUserSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     accountNumber: Joi.string()
@@ -45,6 +51,9 @@ export const updateUserSchema: Joi.ObjectSchema = Joi.object()
       .max(Register.lastNameMaxLength),
 });
 
+/**
+ * Joi used to validate the login user route.
+ */
 export const loginSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     document: Joi.string()

@@ -26,6 +26,9 @@ export enum EntityName {
   User = "User",
 }
 
+/**
+ * Get one item of a given table, a given id and returns it.
+ */
 export const getOne: getOne = (entityName: EntityName): getOneArrowFunc => async (
   request: IdParamRequest,
   h: ResponseToolkit,
@@ -40,6 +43,9 @@ export const getOne: getOne = (entityName: EntityName): getOneArrowFunc => async
   return h.response(item);
 };
 
+/**
+ * Get many items of a given table, restricted by some params and return them.
+ */
 export const getMany: getMany = (entityName: EntityName): getManyArrowFunc  => async (
   request: GetManyRequest,
   h: ResponseToolkit,
@@ -62,6 +68,9 @@ export const getMany: getMany = (entityName: EntityName): getManyArrowFunc  => a
     .header("Access-Control-Expose-Headers", "X-Total-Count");
 };
 
+/**
+ * Remove an item from a given table with a given id.
+ */
 export const remove: remove = (entityName: EntityName): removeArrowFunc => async (
   request: IdParamRequest,
   h: ResponseToolkit,

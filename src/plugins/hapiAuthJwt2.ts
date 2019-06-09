@@ -18,6 +18,9 @@ interface ValidateResponse {
   isValid: boolean;
 }
 
+/**
+ * Validates jwt token.
+ */
 const validate: validate = async (decoded: Decoded, request: Request): Promise<ValidateResponse> => {
   verify(request.headers.authorization, process.env.JWT_SECRET as string);
 
@@ -32,6 +35,9 @@ const validate: validate = async (decoded: Decoded, request: Request): Promise<V
   };
 };
 
+/**
+ * Registers jwt hapi plugin on server.
+ */
 export const registerJwtPlugin: registerJwtPlugin = async (server: Server): Promise<void> => {
   console.log("registering jwt");
   await server.register(HapiAuthJwt2);

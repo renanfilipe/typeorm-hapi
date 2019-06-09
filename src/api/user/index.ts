@@ -8,6 +8,9 @@ import { loginSchema, registerUserSchema, updateUserSchema } from "./userValidat
 
 type init = (server: Server) => void;
 
+/**
+ * Contains all routes related to the user entity
+ */
 export const init: init = (server: Server): void => {
   server.route({
     method: "POST",

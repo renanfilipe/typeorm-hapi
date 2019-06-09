@@ -23,6 +23,9 @@ type login = (
   h: ResponseToolkit,
 ) => Promise<ResponseObject>;
 
+/**
+ * Register user handler. Create a new user and associates him to a newly created account.
+ */
 export const registerUser: registerUser = async (
   request: RegisterUserRequest,
   h: ResponseToolkit,
@@ -47,6 +50,9 @@ export const registerUser: registerUser = async (
   return h.response(account);
 };
 
+/**
+ * Update user handler.
+ */
 export const updateUser: updateUser = async (
   request: UpdateUserRequest,
   h: ResponseToolkit,
@@ -83,6 +89,9 @@ export const updateUser: updateUser = async (
   return h.response(account);
 };
 
+/**
+ * Login user handler. Returns a jwt authorization to be used as request header.
+ */
 export const login: login = async (
   request: LoginRequest,
   h: ResponseToolkit,

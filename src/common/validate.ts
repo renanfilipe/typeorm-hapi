@@ -1,5 +1,8 @@
 import * as Joi from "@hapi/joi";
 
+/**
+ * Joi used to validate node enviroment variables
+ */
 export const nodeEnvSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     DATABASE_NAME: Joi.string()
@@ -18,6 +21,9 @@ export const nodeEnvSchema: Joi.ObjectSchema = Joi.object()
       .required(),
   });
 
+/**
+ * Joi used to validate routes that need only the id
+ */
 export const idSchema: Joi.ObjectSchema = Joi.object()
   .keys({
     id: Joi.string()
@@ -25,6 +31,9 @@ export const idSchema: Joi.ObjectSchema = Joi.object()
       .required(),
   });
 
+/**
+ * Joi used to validate the get many items route
+ */
 export const getManySchema: Joi.ObjectSchema = Joi.object()
   .keys({
     _end: Joi.string()
